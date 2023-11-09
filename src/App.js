@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
 
-function App() {
+import { BlockPicker } from 'react-color'
+import Tippy from '@tippyjs/react'
+
+function App () {
+  const [selectedColor, setSelectedColor] = useState('#ccc')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <h1>Color Picker </h1>
+
+      <div className='area' style={{ backgroundColor: selectedColor }}>
+
+      </div>
+
+      <Tippy interactive={true} placement={'bottom'} content={
+        <BlockPicker
+          color={selectedColor}
+          onChangeComplete={color => setSelectedColor(color.hex)}
+        />
+      }>
+        <button className='ref-button'>Change box color</button>
+
+      </Tippy>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
